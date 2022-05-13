@@ -1,5 +1,10 @@
 # Change Log
 
+
+## v2.0.1
+
+* Moving to python-foreman module hosted by Encore to get around limitations with Python 3.7 and above.
+
 ## v2.0.0
 
 * Drop Python 2.7 support
