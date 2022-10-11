@@ -1,0 +1,45 @@
+---
+description: "Show a content unit (resource: GET /katello/api/content_units/:id)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: content_units.generic_content_units_show
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: content_units.generic_content_units_show
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  content_type:
+    type: string
+    required: true
+    description: "Possible values:"
+  repository_id:
+    type: number
+    required: false
+    description: "repository identifier"
+  organization_id:
+    type: number
+    required: false
+    description: "organization identifier"
+  id:
+    type: string
+    required: true
+    description: "a content unit identifier"

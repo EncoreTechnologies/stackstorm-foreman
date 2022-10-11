@@ -1,0 +1,49 @@
+---
+description: "Upload scap contents in bulk (resource: POST /api/compliance/scap_contents/bulk_upload)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: compliance.scap_contents_bulk_upload
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: compliance.scap_contents_bulk_upload
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  type:
+    type: string
+    required: true
+    description: "Type of the upload"
+  files:
+    type: array
+    required: false
+    description: "File paths to upload when using 'files' upload type"
+  directory:
+    type: string
+    required: false
+    description: "Directory to upload when using 'directory' upload type"

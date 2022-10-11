@@ -1,5 +1,5 @@
 ---
-description: "Update content on one or more hosts (resource: PUT /api/hosts/bulk/update_content)"
+description: "Update content on one or more hosts using katello-agent. NOTE: Katello-agent is deprecated and will be removed in a future release. Consider using remote execution instead. (resource: PUT /api/hosts/bulk/update_content)"
 enabled: true
 runner_type: "python-script"
 entry_point: lib/action.py
@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -38,13 +38,13 @@ parameters:
        "description: 
         parameters:
             search:
+              description: Search string for hosts to perform an action on
               required: false
               type: string
-              description: Search string for hosts to perform an action on
             ids:
+              description: List of host ids to perform an action on
               required: false
               type: array
-              description: List of host ids to perform an action on
             "
   excluded:
     type: object
@@ -53,14 +53,14 @@ parameters:
        "description: 
         parameters:
             ids:
+              description: List of host ids to exclude and not run an action on
               required: false
               type: array
-              description: List of host ids to exclude and not run an action on
             "
   content_type:
     type: string
     required: true
-    description: "The type of content.  The following types are supported: 'package'and 'package_group."
+    description: "The type of content.  The following types are supported: 'package' and 'package_group."
   content:
     type: array
     required: true

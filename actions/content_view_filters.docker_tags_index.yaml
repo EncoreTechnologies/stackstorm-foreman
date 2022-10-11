@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -39,6 +39,10 @@ parameters:
     type: number
     required: true
     description: "content view filter identifier"
+  content_view_filter_rule_id:
+    type: number
+    required: false
+    description: "content view filter rule identifier"
   repository_id:
     type: number
     required: false
@@ -51,6 +55,10 @@ parameters:
     type: array
     required: false
     description: "ids to filter content by"
+  include_filter_ids:
+    type: boolean
+    required: false
+    description: "Includes associated content view filter ids in response"
   search:
     type: string
     required: false

@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -42,7 +42,7 @@ parameters:
   order:
     type: string
     required: false
-    description: "The order to sort the results in. ['asc', 'desc'] Defaultsto 'desc'."
+    description: "The order to sort the results in. ['asc', 'desc'] Defaults to 'desc'."
   sort_by:
     type: string
     required: false

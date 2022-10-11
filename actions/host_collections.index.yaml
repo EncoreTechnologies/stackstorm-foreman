@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -74,4 +74,4 @@ parameters:
   available_for:
     type: string
     required: false
-    description: "Interpret specified object to return only Host Collections that can beassociated with specified object. The value 'host' is supported."
+    description: "Interpret specified object to return only Host Collections that can be associated with specified object. The value 'host' is supported."

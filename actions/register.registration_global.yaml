@@ -1,0 +1,73 @@
+---
+description: "Render Global registration template (resource: GET /api/register)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: register.registration_global
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: register.registration_global
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  organization_id:
+    type: number
+    required: false
+    description: "ID of the Organization to register the host in"
+  location_id:
+    type: number
+    required: false
+    description: "ID of the Location to register the host in"
+  hostgroup_id:
+    type: number
+    required: false
+    description: "ID of the Host group to register the host in"
+  operatingsystem_id:
+    type: number
+    required: false
+    description: "ID of the Operating System to register the host in"
+  setup_insights:
+    type: boolean
+    required: false
+    description: "Set 'host_registration_insights' parameter for the host. If it is set to true, insights client will be installed and registered on Red Hat family operating systems"
+  setup_remote_execution:
+    type: boolean
+    required: false
+    description: "Set 'host_registration_remote_execution' parameter for the host. If it is set to true, SSH keys will be installed on the host"
+  packages:
+    type: string
+    required: false
+    description: "Packages to install on the host when registered. Can be set by `host_packages` parameter, example: `pkg1 pkg2`"
+  update_packages:
+    type: boolean
+    required: false
+    description: "Update all packages on the host"
+  repo:
+    type: string
+    required: false
+    description: "Repository URL / details, for example for Debian OS family: 'deb deb.example.com/ buster 1.0', for Red Hat OS family: 'yum.theforeman.org/client/latest/el8/x86_64/'"
+  repo_gpg_key_url:
+    type: string
+    required: false
+    description: "URL of the GPG key for the repository"
+  remote_execution_interface:
+    type: string
+    required: false
+    description: "Identifier of the Host interface for Remote execution"

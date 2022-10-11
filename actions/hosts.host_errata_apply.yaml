@@ -1,5 +1,5 @@
 ---
-description: "Schedule errata for installation (resource: PUT /api/hosts/:host_id/errata/apply)"
+description: "Schedule errata for installation using katello-agent. NOTE: Katello-agent is deprecated and will be removed in a future release. Consider using remote execution instead. (resource: PUT /api/hosts/:host_id/errata/apply)"
 enabled: true
 runner_type: "python-script"
 entry_point: lib/action.py
@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -34,4 +34,58 @@ parameters:
   errata_ids:
     type: array
     required: true
-    description: "List of Errata ids to install"
+    description: "List of Errata ids to install. Will be removed in a future release"
+  included:
+    type: object
+    required: true
+    description: >
+       "description: Errata to exclusively include in the action
+        parameters:
+            search:
+              description: Search string for erratum to perform an action on
+              required: false
+              type: string
+            ids:
+              description: 'List of errata ids to perform an action on, (ex: RHSA-2019:1168)'
+              required: false
+              type: array
+            "
+  excluded:
+    type: object
+    required: true
+    description: >
+       "description: Errata to explicitly exclude in the action. All other applicable errata will be included in the action, unless an included parameter is passed as well.
+        parameters:
+            ids:
+              description: 'List of errata ids to exclude and not run an action on, (ex: RHSA-2019:1168)'
+              required: false
+              type: array
+            "
+  search:
+    type: string
+    required: false
+    description: "Search string"
+  page:
+    type: number
+    required: false
+    description: "Page number, starting at 1"
+  per_page:
+    type: number
+    required: false
+    description: "Number of results per page to return"
+  order:
+    type: string
+    required: false
+    description: "Sort field and order, eg. 'id DESC'"
+  full_result:
+    type: boolean
+    required: false
+    description: "Whether or not to show all results"
+  sort_by:
+    type: string
+    required: false
+    description: "Field to sort the results on"
+  sort_order:
+    type: string
+    required: false
+    description: "How to order the sorted results (e.g. ASC for ascending)"

@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -40,7 +40,7 @@ parameters:
     required: true
     description: "ID of domain"
   operatingsystem_id:
-    type: string
+    type: number
     required: false
     description: "ID of operating system"
   location_id:

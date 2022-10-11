@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -58,7 +58,7 @@ parameters:
   errata_restrict_applicable:
     type: boolean
     required: false
-    description: "Return errata that are applicable to one or more hosts (defaults to true ifhost_id is specified)"
+    description: "Return errata that are applicable to one or more hosts (defaults to true if host_id is specified)"
   errata_restrict_installable:
     type: boolean
     required: false
@@ -66,7 +66,7 @@ parameters:
   available_for:
     type: string
     required: false
-    description: "Return errata that can be added to the specified object.  The values'content_view_version' and 'content_view_filter are supported."
+    description: "Return errata that can be added to the specified object.  The values 'content_view_version' and 'content_view_filter are supported."
   search:
     type: string
     required: false

@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -31,10 +31,6 @@ parameters:
     type: number
     required: true
     description: "Repository id"
-  upload_ids:
-    type: array
-    required: false
-    description: "Array of upload ids to import"
   async:
     type: boolean
     required: false
@@ -47,30 +43,38 @@ parameters:
     type: boolean
     required: false
     description: "Whether or not to sync an external capsule after upload. Default: true"
+  content_type:
+    type: string
+    required: false
+    description: "content type ('deb', 'docker_manifest', 'file', 'ostree_ref', 'rpm', 'srpm')"
   uploads:
     type: array
     required: false
     description: >
        "description: Array of uploads to import
         parameters:
-            checksum:
-              required: false
-              type: string
-              description: ''
-            digest:
-              required: false
-              type: string
-              description: Needs to only be set for docker tags
             id:
+              description: ''
               required: true
               type: string
+            content_unit_id:
               description: ''
-            name:
               required: false
               type: string
-              description: Needs to only be set for file repositories or docker tags
             size:
+              description: ''
               required: false
               type: string
+            checksum:
               description: ''
+              required: false
+              type: string
+            name:
+              description: Needs to only be set for file repositories or docker tags
+              required: false
+              type: string
+            digest:
+              description: Needs to only be set for docker tags
+              required: false
+              type: string
             "

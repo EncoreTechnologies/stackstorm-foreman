@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -54,4 +54,4 @@ parameters:
   prior_id:
     type: number
     required: true
-    description: "ID of an environment that is prior to the new environment in the chain. Ithas to be either the ID of Library or the ID of an environment at the endof a chain."
+    description: "ID of an environment that is prior to the new environment in the chain. It has to be either the ID of Library or the ID of an environment at the end of a chain."

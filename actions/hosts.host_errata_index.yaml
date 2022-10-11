@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -39,6 +39,18 @@ parameters:
     type: number
     required: false
     description: "Calculate Applicable Errata based on a particular Environment"
+  include_applicable:
+    type: boolean
+    required: false
+    description: "Return errata that are applicable to this host. Defaults to false)"
+  type:
+    type: string
+    required: false
+    description: "Return only errata of a particular type (security, bugfix, enhancement)"
+  severity:
+    type: string
+    required: false
+    description: "Return only errata of a particular severity (None, Low, Moderate, Important, Critical)"
   search:
     type: string
     required: false

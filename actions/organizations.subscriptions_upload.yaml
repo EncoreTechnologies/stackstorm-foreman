@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -32,10 +32,6 @@ parameters:
     required: true
     description: "Organization id"
   content:
-    type: string
+    type: file
     required: true
     description: "Subscription manifest file"
-  repository_url:
-    type: string
-    required: false
-    description: "repository url"

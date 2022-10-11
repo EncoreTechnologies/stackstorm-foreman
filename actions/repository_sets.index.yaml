@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -38,15 +38,35 @@ parameters:
   enabled:
     type: boolean
     required: false
-    description: "If true, only return repository sets that have been enabled. Defaults tofalse"
+    description: "If true, only return repository sets that have been enabled. Defaults to false"
   with_active_subscription:
     type: boolean
     required: false
-    description: "If true, only return repository sets that are associated with an activesubscriptions"
+    description: "If true, only return repository sets that are associated with an active subscriptions"
   organization_id:
     type: number
     required: false
     description: "organization identifier"
+  with_custom:
+    type: boolean
+    required: false
+    description: "If true, return custom repository sets along with redhat repos"
+  activation_key_id:
+    type: number
+    required: false
+    description: "activation key identifier"
+  host_id:
+    type: number
+    required: false
+    description: "Id of the host"
+  content_access_mode_all:
+    type: boolean
+    required: false
+    description: "Get all content available, not just that provided by subscriptions."
+  content_access_mode_env:
+    type: boolean
+    required: false
+    description: "Limit content to just that available in the host's or activation key's content view version and lifecycle environment."
   search:
     type: string
     required: false

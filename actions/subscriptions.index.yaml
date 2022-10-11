@@ -1,5 +1,5 @@
 ---
-description: " (resource: GET /katello/api/subscriptions)"
+description: "List subscriptions (resource: GET /katello/api/subscriptions)"
 enabled: true
 runner_type: "python-script"
 entry_point: lib/action.py
@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -67,10 +67,14 @@ parameters:
     type: string
     required: false
     description: "Activation key ID"
+  name:
+    type: string
+    required: false
+    description: "name of the subscription"
   available_for:
     type: string
     required: false
-    description: "Object to show subscriptions available for, either 'host' or'activation_key'"
+    description: "Object to show subscriptions available for, either 'host' or 'activation_key'"
   match_host:
     type: boolean
     required: false
@@ -82,4 +86,4 @@ parameters:
   no_overlap:
     type: boolean
     required: false
-    description: "Return subscriptions which do not overlap with a currently-attachedsubscription"
+    description: "Return subscriptions which do not overlap with a currently-attached subscription"

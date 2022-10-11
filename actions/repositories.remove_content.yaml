@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -35,6 +35,10 @@ parameters:
     type: array
     required: true
     description: "Array of content ids to remove"
+  content_type:
+    type: string
+    required: false
+    description: "content type ('deb', 'docker_manifest', 'file', 'ostree', 'rpm', 'srpm')"
   sync_capsule:
     type: boolean
     required: false

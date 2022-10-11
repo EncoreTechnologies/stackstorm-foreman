@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -51,3 +51,11 @@ parameters:
     type: boolean
     required: false
     description: "Enable/Disable auto publish of composite view"
+  solve_dependencies:
+    type: boolean
+    required: false
+    description: "Solve RPM dependencies by default on Content View publish, defaults to false"
+  import_only:
+    type: boolean
+    required: false
+    description: "Designate this Content View for importing from upstream servers only. Defaults to false"

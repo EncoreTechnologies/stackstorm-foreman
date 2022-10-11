@@ -1,0 +1,49 @@
+---
+description: "Performs a full-export of a content view version. (resource: POST /katello/api/content_exports/version)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: content_exports.version
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: content_exports.version
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  id:
+    type: number
+    required: true
+    description: "Content view version identifier"
+  destination_server:
+    type: string
+    required: false
+    description: "Destination Server name"
+  chunk_size_gb:
+    type: number
+    required: false
+    description: "Split the exported content into archives no greater than the specified size in gigabytes."
+  fail_on_missing_content:
+    type: boolean
+    required: false
+    description: "Fails if any of the repositories belonging to this version are unexportable. False by default."
+  format:
+    type: string
+    required: false
+    description: "Export formats. Choose syncable if content is to be imported via repository sync. Choose importable if content is to be imported via hammer content-import.Defaults to importable."

@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -78,4 +78,8 @@ parameters:
   date_type:
     type: string
     required: false
-    description: "erratum: search using the 'Issued On' or 'Updated On'column of the errata. Values are 'issued'/'updated'"
+    description: "erratum: search using the 'Issued On' or 'Updated On' column of the errata. Values are 'issued'/'updated'"
+  module_stream_ids:
+    type: array
+    required: false
+    description: "module stream ids"

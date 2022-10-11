@@ -18,11 +18,11 @@ parameters:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -30,71 +30,75 @@ parameters:
   location_id:
     type: number
     required: false
-    description: "Scope by locations"
+    description: "Set the current location context for the request"
   organization_id:
     type: number
     required: false
-    description: "Scope by organizations"
+    description: "Set the current organization context for the request"
   policy:
     type: object
     required: true
     description: >
        "description: 
         parameters:
-            host_ids:
-              required: false
-              type: array
-              description: Apply policy to hosts
             name:
-              required: true
-              type: string
               description: Policy name
-            scap_content_id:
               required: true
-              type: number
-              description: Policy SCAP content ID
-            tailoring_file_profile_id:
-              required: false
-              type: number
-              description: Tailoring file profile ID
-            period:
-              required: false
               type: string
-              description: Policy schedule period (weekly, monthly, custom)
-            tailoring_file_id:
-              required: false
-              type: number
-              description: Tailoring file ID
-            day_of_month:
-              required: false
-              type: number
-              description: Policy schedule day of month (only if period == 'monthly')
-            weekday:
-              required: false
-              type: string
-              description: Policy schedule weekday (only if period == 'weekly')
-            cron_line:
-              required: false
-              type: string
-              description: Policy schedule cron line (only if period == 'custom')
-            location_ids:
-              required: false
-              type: array
-              description: REPLACE locations with given ids
-            scap_content_profile_id:
-              required: true
-              type: number
-              description: Policy SCAP content profile ID
-            hostgroup_ids:
-              required: false
-              type: array
-              description: Apply policy to host groups
-            organization_ids:
-              required: false
-              type: array
-              description: REPLACE organizations with given ids.
             description:
+              description: Policy description
               required: false
               type: string
-              description: Policy description
+            scap_content_id:
+              description: Policy SCAP content ID
+              required: true
+              type: number
+            scap_content_profile_id:
+              description: Policy SCAP content profile ID
+              required: true
+              type: number
+            period:
+              description: Policy schedule period (weekly, monthly, custom)
+              required: false
+              type: string
+            weekday:
+              description: Policy schedule weekday (only if period == 'weekly')
+              required: false
+              type: string
+            day_of_month:
+              description: Policy schedule day of month (only if period == 'monthly')
+              required: false
+              type: number
+            cron_line:
+              description: Policy schedule cron line (only if period == 'custom')
+              required: false
+              type: string
+            hostgroup_ids:
+              description: Apply policy to host groups
+              required: false
+              type: array
+            host_ids:
+              description: Apply policy to hosts
+              required: false
+              type: array
+            tailoring_file_id:
+              description: Tailoring file ID
+              required: false
+              type: number
+            tailoring_file_profile_id:
+              description: Tailoring file profile ID
+              required: false
+              type: number
+            deploy_by:
+              description: How the policy should be deployed
+              required: true
+              type: string
+            location_ids:
+              description: REPLACE locations with given ids
+              required: false
+              type: array
+            organization_ids:
+              description: REPLACE organizations with given ids.
+              required: false
+              type: array
             "

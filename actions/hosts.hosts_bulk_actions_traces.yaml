@@ -1,0 +1,59 @@
+---
+description: "Fetch traces for one or more hosts (resource: POST /api/hosts/bulk/traces)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: hosts.hosts_bulk_actions_traces
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: hosts.hosts_bulk_actions_traces
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  organization_id:
+    type: number
+    required: true
+    description: "ID of the organization"
+  included:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            search:
+              description: Search string for hosts to perform an action on
+              required: false
+              type: string
+            ids:
+              description: List of host ids to perform an action on
+              required: false
+              type: array
+            "
+  excluded:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            ids:
+              description: List of host ids to exclude and not run an action on
+              required: false
+              type: array
+            "
