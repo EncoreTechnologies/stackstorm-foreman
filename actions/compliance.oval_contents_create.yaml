@@ -48,7 +48,7 @@ parameters:
             scap_file:
               description: XML containing OVAL content
               required: false
-              type: file
+              type: string
             original_filename:
               description: Original file name of the OVAL content file
               required: false

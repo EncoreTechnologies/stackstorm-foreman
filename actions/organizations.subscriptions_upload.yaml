@@ -32,6 +32,6 @@ parameters:
     required: true
     description: "Organization id"
   content:
-    type: file
+    type: string
     required: true
     description: "Subscription manifest file"
