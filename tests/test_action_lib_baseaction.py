@@ -69,9 +69,9 @@ class TestActionLibBaseAction(ForemanBaseActionTestCase):
     def test__resolve_connection_from_kwargs(self):
         action = self.get_action_instance(self.config_blank)
         kwargs_dict = {'connection': None,
-                       'server': 'kwargs_server',
-                       'username': 'kwargs_user',
-                       'password': 'kwargs_password'}
+                       'conn_server': 'kwargs_server',
+                       'conn_username': 'kwargs_user',
+                       'conn_password': 'kwargs_password'}
         connection_expected = copy.deepcopy(kwargs_dict)
         connection_result = action._resolve_connection(kwargs_dict)
         self.assertEqual(connection_result, connection_expected)
@@ -80,9 +80,9 @@ class TestActionLibBaseAction(ForemanBaseActionTestCase):
     def test__resolve_connection_from_kwargs_defaults(self):
         action = self.get_action_instance(self.config_blank)
         kwargs_dict = {'connection': None,
-                       'server': 'kwargs_server',
-                       'username': 'kwargs_user',
-                       'password': 'kwargs_password'}
+                       'conn_server': 'kwargs_server',
+                       'conn_username': 'kwargs_user',
+                       'conn_password': 'kwargs_password'}
         connection_expected = copy.deepcopy(kwargs_dict)
         for key, required, default in CONFIG_CONNECTION_KEYS:
             if not required and default:
@@ -95,9 +95,9 @@ class TestActionLibBaseAction(ForemanBaseActionTestCase):
     def test__resolve_connection_from_kwargs_extras(self):
         action = self.get_action_instance(self.config_blank)
         connection_expected = {'connection': None,
-                               'server': 'kwargs_server',
-                               'username': 'kwargs_user',
-                               'password': 'kwargs_password'}
+                               'conn_server': 'kwargs_server',
+                               'conn_username': 'kwargs_user',
+                               'conn_password': 'kwargs_password'}
         kwargs_dict = copy.deepcopy(connection_expected)
         kwargs_extras = {"extra_key1": "extra_value1",
                          "extra_key2": 234}
@@ -155,7 +155,7 @@ class TestActionLibBaseAction(ForemanBaseActionTestCase):
         result = action.run(**kwargs_dict)
 
         self.assertEqual(result, op_result)
-        mock_foreman.assert_called_with('https://{}/'.format(connection['server']),
-                                        auth=(connection['username'], connection['password']),
-                                        api_version=2)
+        mock_foreman.assert_called_with('https://{}/'.format(connection['conn_server']),
+                                        auth=(connection['conn_username'],
+                                        connection['conn_password']), api_version=2)
         mock_func.assert_called_with(**op_args)
