@@ -1,3 +1,3 @@
-git+https://github.com/EncoreTechnologies/python-foreman@feature/python-3-8-fixes
+git+https://github.com/EncoreTechnologies/python-foreman@feature/rhel-9-setuptools
 ruamel.yaml>=0.15.0
 jinja2>=2.7.0
