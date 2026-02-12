@@ -1,9 +1,17 @@
 # Change Log
 
-## v2.1.0
+## v2.1.2
 
 - Updated actions to work with Foreman 3.1.1.23 (Satellite 6.11.3) and Katello 4.3.0
 - Moving to python-foreman module hosted by Encore to get around limitations with Python 3.7 and above
+
+## v2.1.1
+
+* Updated files to work with latest CI updates
+
+## v2.1.0
+
+* Timeouts defined in the action are now honored properly
 
 ## v2.0.0
 

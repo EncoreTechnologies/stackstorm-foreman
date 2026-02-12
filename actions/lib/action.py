@@ -112,6 +112,7 @@ class BaseAction(Action):
 
         # parse parameters
         operation = self._get_del_arg('operation', kwargs_dict)
+        timeout = self._get_del_arg('timeout', kwargs_dict)
         connection = self._resolve_connection(kwargs_dict)
         self._validate_connection(connection)
 
