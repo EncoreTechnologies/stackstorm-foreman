@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -35,10 +35,6 @@ parameters:
     type: boolean
     required: false
     description: "force content view promotion and bypass lifecycle environment restriction"
-  environment_id:
-    type: number
-    required: false
-    description: "LifeCycle Environment identifier"
   environment_ids:
     type: array
     required: false

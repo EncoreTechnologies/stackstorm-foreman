@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -38,7 +38,7 @@ parameters:
   facts:
     type: object
     required: false
-    description: "Key-value hash of subscription-manager facts, nesting uses a perioddelimiter (.)"
+    description: "Key-value hash of subscription-manager facts, nesting uses a period delimiter (.)"
   hypervisor_guest_uuids:
     type: array
     required: false
@@ -49,22 +49,22 @@ parameters:
     description: >
        "description: List of products installed on the host
         parameters:
-            version:
-              required: false
-              type: string
-              description: Product version
-            arch:
-              required: false
-              type: string
-              description: Product architecture
             product_id:
+              description: Product id as listed from a host's installed products,         this is not the same product id as the products api returns
               required: false
               type: string
-              description: Product id as listed from a host's installed products,         this isnot the same product id as the products api returns
             product_name:
+              description: Product name as listed from a host's installed products
               required: false
               type: string
-              description: Product name as listed from a host's installed products
+            arch:
+              description: Product architecture
+              required: false
+              type: string
+            version:
+              description: Product version
+              required: false
+              type: string
             "
   release_version:
     type: string

@@ -1,0 +1,120 @@
+---
+description: "Generate global registration command (resource: POST /api/registration_commands)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: registration_commands.create
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: registration_commands.create
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  registration_command:
+    type: object
+    required: false
+    description: >
+       "description: 
+        parameters:
+            organization_id:
+              description: ID of the Organization to register the host in
+              required: false
+              type: number
+            location_id:
+              description: ID of the Location to register the host in
+              required: false
+              type: number
+            hostgroup_id:
+              description: ID of the Host group to register the host in
+              required: false
+              type: number
+            operatingsystem_id:
+              description: ID of the Operating System to register the host in. Operating system must have a `host_init_config` template assigned
+              required: false
+              type: number
+            smart_proxy_id:
+              description: ID of the Capsule. This Capsule must have enabled both the 'Templates' and 'Registration' features
+              required: false
+              type: number
+            setup_insights:
+              description: Set 'host_registration_insights' parameter for the host. If it is set to true, insights client will be installed and registered on Red Hat family operating systems
+              required: false
+              type: boolean
+            setup_remote_execution:
+              description: Set 'host_registration_remote_execution' parameter for the host. If it is set to true, SSH keys will be installed on the host
+              required: false
+              type: boolean
+            jwt_expiration:
+              description: Expiration of the authorization token (in hours)
+              required: false
+              type: number
+            insecure:
+              description: Enable insecure argument for the initial curl
+              required: false
+              type: boolean
+            packages:
+              description: 'Packages to install on the host when registered. Can be set by `host_packages` parameter, example: `pkg1 pkg2`'
+              required: false
+              type: string
+            update_packages:
+              description: Update all packages on the host
+              required: false
+              type: boolean
+            repo:
+              description: "Repository URL / details, for example for Debian OS family: 'deb deb.example.com/ buster 1.0', for Red Hat OS family: 'yum.theforeman.org/client/latest/el8/x86_64/'"
+              required: false
+              type: string
+            repo_gpg_key_url:
+              description: URL of the GPG key for the repository
+              required: false
+              type: string
+            remote_execution_interface:
+              description: Identifier of the Host interface for Remote execution
+              required: false
+              type: string
+            activation_key:
+              description: Activation key for subscription-manager client, required for CentOS and Red Hat Enterprise Linux. For multiple keys use `activation_keys` param instead.
+              required: false
+              type: string
+            activation_keys:
+              description: Activation keys for subscription-manager client, required for CentOS and Red Hat Enterprise Linux. Required only if host group has no activation keys.
+              required: false
+              type: array
+            lifecycle_environment_id:
+              description: Lifecycle environment for the host.
+              required: false
+              type: number
+            force:
+              description: Clear any previous registration and run subscription-manager with –force.
+              required: false
+              type: boolean
+            ignore_subman_errors:
+              description: Ignore subscription-manager errors for `subscription-manager register` command
+              required: false
+              type: boolean
+            "

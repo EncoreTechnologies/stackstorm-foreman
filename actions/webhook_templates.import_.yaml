@@ -1,0 +1,83 @@
+---
+description: "Import a webhook template (resource: POST /api/webhook_templates/import)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: webhook_templates.import_
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: webhook_templates.import_
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  webhook_template:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            name:
+              description: Template name
+              required: false
+              type: string
+            template:
+              description: Template contents including metadata
+              required: false
+              type: string
+            location_ids:
+              description: REPLACE locations with given ids
+              required: false
+              type: array
+            organization_ids:
+              description: REPLACE organizations with given ids.
+              required: false
+              type: array
+            "
+  options:
+    type: object
+    required: false
+    description: >
+       "description: 
+        parameters:
+            force:
+              description: use if you want update locked templates
+              required: false
+              type: boolean
+            associate:
+              description: determines when the template should associate objects based on metadata, new means only when new template is being created, always means both for new and existing template which is only being updated, never ignores metadata
+              required: false
+              type: string
+            lock:
+              description: lock imported templates (false by default)
+              required: false
+              type: boolean
+            default:
+              description: makes the template default meaning it will be automatically associated with newly created organizations and locations (false by default)
+              required: false
+              type: boolean
+            "

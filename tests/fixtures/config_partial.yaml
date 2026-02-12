@@ -1,11 +1,11 @@
 ---
 foreman:
   missing-server:
-    username: user1
-    password: pwd1
+    conn_username: user1
+    conn_password: pwd1
   missing-username:
-    server: server1
-    password: pwd1
+    conn_server: server1
+    conn_password: pwd1
   missing-password:
-    server: server1
-    username: user1
+    conn_server: server1
+    conn_username: user1

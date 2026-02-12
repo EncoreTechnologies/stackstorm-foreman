@@ -1,0 +1,68 @@
+---
+description: "Create OVAL content (resource: POST /api/compliance/oval_contents)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: compliance.oval_contents_create
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: compliance.oval_contents_create
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  oval_content:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            name:
+              description: OVAL content name
+              required: true
+              type: string
+            scap_file:
+              description: XML containing OVAL content
+              required: false
+              type: string
+            original_filename:
+              description: Original file name of the OVAL content file
+              required: false
+              type: string
+            url:
+              description: URL of the OVAL content file
+              required: false
+              type: string
+            location_ids:
+              description: REPLACE locations with given ids
+              required: false
+              type: array
+            organization_ids:
+              description: REPLACE organizations with given ids.
+              required: false
+              type: array
+            "

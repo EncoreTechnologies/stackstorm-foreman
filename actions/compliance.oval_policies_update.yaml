@@ -1,0 +1,83 @@
+---
+description: "Update an OVAL Policy (resource: PUT /api/compliance/oval_policies/:id)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: compliance.oval_policies_update
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: compliance.oval_policies_update
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  id:
+    type: string
+    required: true
+  oval_policy:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            name:
+              description: OVAL Policy name
+              required: false
+              type: string
+            oval_content_id:
+              description: Policy OVAL content ID
+              required: false
+              type: number
+            description:
+              description: OVAL Policy description
+              required: false
+              type: string
+            period:
+              description: OVAL Policy schedule period (weekly, monthly, custom)
+              required: false
+              type: string
+            weekday:
+              description: OVAL Policy schedule weekday (only if period == 'weekly')
+              required: false
+              type: string
+            day_of_month:
+              description: OVAL Policy schedule day of month (only if period == 'monthly')
+              required: false
+              type: number
+            cron_line:
+              description: OVAL Policy schedule cron line (only if period == 'custom')
+              required: false
+              type: string
+            location_ids:
+              description: REPLACE locations with given ids
+              required: false
+              type: array
+            organization_ids:
+              description: REPLACE organizations with given ids.
+              required: false
+              type: array
+            "

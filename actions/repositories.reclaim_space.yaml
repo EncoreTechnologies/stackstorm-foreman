@@ -1,0 +1,33 @@
+---
+description: "Reclaim space from an On Demand repository (resource: POST /katello/api/repositories/:id/reclaim_space)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: repositories.reclaim_space
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: repositories.reclaim_space
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  id:
+    type: number
+    required: true
+    description: "repository ID"

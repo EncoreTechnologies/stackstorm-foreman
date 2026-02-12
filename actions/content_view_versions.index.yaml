@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -35,10 +35,6 @@ parameters:
     type: number
     required: false
     description: "Filter versions by environment"
-  puppet_module_id:
-    type: number
-    required: false
-    description: "Filter versions by puppet module"
   version:
     type: string
     required: false
@@ -54,7 +50,7 @@ parameters:
   triggered_by_id:
     type: number
     required: false
-    description: "Filter composite versions whose publish was triggered by the specifiedcomponent version"
+    description: "Filter composite versions whose publish was triggered by the specified component version"
   search:
     type: string
     required: false

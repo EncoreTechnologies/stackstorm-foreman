@@ -1,10 +1,10 @@
 ---
 foreman:
   base:
-    server: abc
-    username: Administrator
-    password: PassworD!
+    conn_server: abc
+    conn_username: Administrator
+    conn_password: PassworD!
   full:
-    server: server1
-    username: user1
-    password: pwd1
+    conn_server: server1
+    conn_username: user1
+    conn_password: pwd1

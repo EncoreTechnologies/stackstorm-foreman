@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -35,6 +35,14 @@ parameters:
     type: number
     required: false
     description: "Id of the environment to limit the synchronization on"
+  content_view_id:
+    type: number
+    required: false
+    description: "Id of the content view to limit the synchronization on"
+  repository_id:
+    type: number
+    required: false
+    description: "Id of the repository to limit the synchronization on"
   skip_metadata_check:
     type: boolean
     required: false

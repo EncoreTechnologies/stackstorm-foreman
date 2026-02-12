@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -34,10 +34,18 @@ parameters:
   name:
     type: string
     required: false
+  description:
+    type: string
+    required: false
+    description: "description of the repository"
   url:
     type: string
     required: false
     description: "repository source url"
+  os_versions:
+    type: array
+    required: false
+    description: "Identifies whether the repository should be disabled on a client with a non-matching OS version. Pass [] to enable regardless of OS version. Maximum length 1; allowed tags are: rhel-6, rhel-7, rhel-8, rhel-9"
   gpg_key_id:
     type: number
     required: false
@@ -45,15 +53,15 @@ parameters:
   ssl_ca_cert_id:
     type: number
     required: false
-    description: "Idenifier of the SSL CA Cert"
+    description: "Identifier of the content credential containing the SSL CA Cert"
   ssl_client_cert_id:
     type: number
     required: false
-    description: "Identifier of the SSL Client Cert"
+    description: "Identifier of the content credential containing the SSL Client Cert"
   ssl_client_key_id:
     type: number
     required: false
-    description: "Identifier of the SSL Client Key"
+    description: "Identifier of the content credential containing the SSL Client Key"
   unprotected:
     type: boolean
     required: false
@@ -61,7 +69,7 @@ parameters:
   checksum_type:
     type: string
     required: false
-    description: "Checksum of the repository, currently 'sha1' & 'sha256'are supported"
+    description: "Checksum of the repository, currently 'sha1' & 'sha256' are supported"
   docker_upstream_name:
     type: string
     required: false
@@ -69,19 +77,35 @@ parameters:
   docker_tags_whitelist:
     type: array
     required: false
-    description: "Comma separated list of tags to sync for Container Image repository"
+    description: "Comma-separated list of tags to sync for Container Image repository (Deprecated)"
+  include_tags:
+    type: array
+    required: false
+    description: "Comma-separated list of tags to sync for a container image repository"
+  exclude_tags:
+    type: array
+    required: false
+    description: "Comma-separated list of tags to exclude when syncing a container image repository. Default: any tag ending in '-source'"
   download_policy:
     type: string
     required: false
-    description: "download policy for yum repos (either 'immediate','on_demand', or 'background')"
+    description: "download policy for yum repos (either 'immediate' or 'on_demand')"
+  download_concurrency:
+    type: number
+    required: false
+    description: "Used to determine download concurrency of the repository in pulp3. Use value less than 20. Defaults to 10"
   mirror_on_sync:
     type: boolean
     required: false
-    description: "true if this repository when synced has to be mirrored from the source andstale rpms removed"
+    description: "true if this repository when synced has to be mirrored from the source and stale rpms removed (Deprecated)"
+  mirroring_policy:
+    type: string
+    required: false
+    description: "Policy to set for mirroring content.  Must be one of additive."
   verify_ssl_on_sync:
     type: boolean
     required: false
-    description: "if true, Katello will verify the upstream url's SSL certifcates aresigned by a trusted CA"
+    description: "if true, Katello will verify the upstream url's SSL certifcates are signed by a trusted CA"
   upstream_username:
     type: string
     required: false
@@ -90,31 +114,63 @@ parameters:
     type: string
     required: false
     description: "Password of the upstream repository user used for authentication"
-  ostree_upstream_sync_policy:
+  upstream_authentication_token:
     type: string
     required: false
-    description: "policies for syncing upstream ostree repositories"
-  ostree_upstream_sync_depth:
-    type: number
-    required: false
-    description: "if a custom sync policy is chosen for ostree repositories then a'depth' value must be provided"
+    description: "Password of the upstream authentication token."
   deb_releases:
     type: string
     required: false
-    description: "comma separated list of releases to be synched from deb-archive"
+    description: "whitespace-separated list of releases to be synced from deb-archive"
   deb_components:
     type: string
     required: false
-    description: "comma separated list of repo components to be synched from deb-archive"
+    description: "whitespace-separated list of repo components to be synced from deb-archive"
   deb_architectures:
     type: string
     required: false
-    description: "comma separated list of architectures to be synched from deb-archive"
-  ignore_global_proxy:
-    type: boolean
-    required: false
-    description: "if true, will ignore the globally configured Capsule when syncing"
+    description: "whitespace-separated list of architectures to be synced from deb-archive"
   ignorable_content:
     type: array
     required: false
-    description: "List of content units to ignore while syncing a yum repository. Must besubset of rpm,drpm,srpm,distribution,erratum"
+    description: "List of content units to ignore while syncing a yum repository. Must be subset of srpm"
+  ansible_collection_requirements:
+    type: string
+    required: false
+    description: "Contents of requirement yaml file to sync from URL"
+  ansible_collection_auth_url:
+    type: string
+    required: false
+    description: "The URL to receive a session token from, e.g. used with Automation Hub."
+  ansible_collection_auth_token:
+    type: string
+    required: false
+    description: "The token key to use for authentication."
+  http_proxy_policy:
+    type: string
+    required: false
+    description: "policies for HTTP Proxy for content sync"
+  http_proxy_id:
+    type: number
+    required: false
+    description: "ID of a HTTP Proxy"
+  arch:
+    type: string
+    required: false
+    description: "Architecture of content in the repository"
+  retain_package_versions_count:
+    type: number
+    required: false
+    description: "The maximum number of versions of each package to keep."
+  excludes:
+    type: array
+    required: false
+    description: "Python packages to exclude from the upstream URL, names separated by newline. You may also specify versions, for example: django~=2.0."
+  includes:
+    type: array
+    required: false
+    description: "Python packages to include from the upstream URL, names separated by newline. You may also specify versions, for example: django~=2.0. Leave empty to include every package."
+  package_types:
+    type: array
+    required: false
+    description: "Package types to sync for Python content, separated by comma. Leave empty to get every package type. Package types are: bdist_dmg, bdist_dumb, bdist_egg, bdist_msi, bdist_rpm, bdist_wheel, bdist_wininst, sdist."

@@ -1,14 +1,14 @@
 ---
 foreman:
   dev:
-    server: "ipa1.dev.domain.tld"
-    username: "devusername"
-    password: "devpassword"
+    conn_server: "ipa1.dev.domain.tld"
+    conn_username: "devusername"
+    conn_password: "devpassword"
   qa:
-    server: "ipa1.qa.domain.tld"
-    username: "qausername"
-    password: "qapassword"
+    conn_server: "ipa1.qa.domain.tld"
+    conn_username: "qausername"
+    conn_password: "qapassword"
   prod:
-    server: "ipa1.prod.domain.tld"
-    username: "produsername"
-    password: "prodpassword"
+    conn_server: "ipa1.prod.domain.tld"
+    conn_username: "produsername"
+    conn_password: "prodpassword"

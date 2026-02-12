@@ -1,0 +1,73 @@
+---
+description: "Update the CDN configuration (resource: PUT /katello/api/organizations/:id/cdn_configuration)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: organizations.cdn_configuration
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: organizations.cdn_configuration
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  id:
+    type: string
+    required: true
+    description: "ID of the Organization"
+  type:
+    type: string
+    required: true
+    description: "CDN configuration type. One of redhat_cdn, network_sync, export_sync."
+  url:
+    type: string
+    required: false
+    description: "Upstream satellite server to sync CDN content from. Relevant only for 'upstream_server' type."
+  username:
+    type: string
+    required: false
+    description: "Username for authentication. Relevant only for 'upstream_server' type."
+  password:
+    type: string
+    required: false
+    description: "Password for authentication. Relevant only for 'upstream_server' type."
+  upstream_organization_label:
+    type: string
+    required: false
+    description: "Upstream organization to sync CDN content from. Relevant only for 'upstream_server' type."
+  upstream_content_view_label:
+    type: string
+    required: false
+    description: "Upstream Content View Label, default: Default_Organization_View. Relevant only for 'upstream_server' type."
+  upstream_lifecycle_environment_label:
+    type: string
+    required: false
+    description: "Upstream Lifecycle Environment, default: Library. Relevant only for 'upstream_server' type."
+  ssl_ca_credential_id:
+    type: number
+    required: false
+    description: "Content Credential to use for SSL CA. Relevant only for 'upstream_server' type."

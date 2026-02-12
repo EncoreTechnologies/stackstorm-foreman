@@ -10,15 +10,15 @@ foreman:
 connections:
   type: "object"
   properties:
-    server:
+    conn_server:
       type: string
       description: "IP/Hostname of the server"
       required: true
-    username:
+    conn_username:
       type: string
       description: "Username to login to the server"
       required: true
-    password:
+    conn_password:
       type: string
       description: "Password to login to the server"
       required: true

@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -34,8 +34,8 @@ parameters:
   skip_metadata_check:
     type: boolean
     required: false
-    description: "Force sync even if no upstream changes are detected. Non-yum repositoriesare skipped."
+    description: "Force sync even if no upstream changes are detected. Non-yum repositories are skipped."
   validate_contents:
     type: boolean
     required: false
-    description: "Force a sync and validate the checksums of all content. Non-yumrepositories (or those with                                                On Demand download policy) are skipped."
+    description: "Force a sync and validate the checksums of all content. Non-yum repositories (or those with                                                      On Demand download policy) are skipped."

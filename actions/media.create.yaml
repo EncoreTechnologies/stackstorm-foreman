@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -30,11 +30,11 @@ parameters:
   location_id:
     type: number
     required: false
-    description: "Scope by locations"
+    description: "Set the current location context for the request"
   organization_id:
     type: number
     required: false
-    description: "Scope by organizations"
+    description: "Set the current organization context for the request"
   medium:
     type: object
     required: true
@@ -42,27 +42,27 @@ parameters:
        "description: 
         parameters:
             name:
-              required: true
-              type: string
               description: Name of media
-            os_family:
-              required: false
-              type: string
-              description: 'Operating system family, available values: AIX, Altlinux, Archlinux,Coreos, Debian, Freebsd, Gentoo, Junos, NXOS, Rancheros, Redhat, Solaris,Suse, Windows, Xenserver'
-            operatingsystem_ids:
-              required: false
-              type: array
-              description: ''
-            path:
               required: true
               type: string
-              description: The path to the medium, can be a URL or a valid NFS server (exclusive ofthe architecture).for example mirror.centos.org/centos/$version/os/$archwhere $arch will be substituted for the host's actual OS architectureand $version, $major and $minor will be substituted for the version of theoperating system.Solaris and Debian media may also use $release.
+            path:
+              description: The path to the medium, can be a URL or a valid NFS server (exclusive of the architecture).for example mirror.centos.org/centos/$version/os/$arch where $arch will be substituted for the host's actual OS architecture and $version, $major and $minor will be substituted for the version of the operating system.Solaris and Debian media may also use $release.
+              required: true
+              type: string
+            os_family:
+              description: 'Operating system family, available values: AIX, Altlinux, Archlinux, Coreos, Debian, Fcos, Freebsd, Gentoo, Junos, NXOS, Rancheros, Redhat, Rhcos, Solaris, Suse, VRP, Windows, Xenserver'
+              required: false
+              type: string
+            operatingsystem_ids:
+              description: ''
+              required: false
+              type: array
             location_ids:
-              required: false
-              type: array
               description: REPLACE locations with given ids
-            organization_ids:
               required: false
               type: array
+            organization_ids:
               description: REPLACE organizations with given ids.
+              required: false
+              type: array
             "

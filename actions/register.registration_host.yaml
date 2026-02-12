@@ -1,0 +1,309 @@
+---
+description: "Find or create a host and render the 'Host initial configuration' template (resource: POST /api/register)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: register.registration_host
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: register.registration_host
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  host:
+    type: object
+    required: true
+    description: >
+       "description: 
+        parameters:
+            name:
+              description: ''
+              required: false
+              type: string
+            location_id:
+              description: ''
+              required: false
+              type: number
+            organization_id:
+              description: ''
+              required: false
+              type: number
+            ip:
+              description: IPv4 address, not required if using a subnet with DHCP Capsule
+              required: false
+              type: string
+            ip6:
+              description: IPv6 address, not required if using a subnet with DHCP Capsule
+              required: false
+              type: string
+            mac:
+              description: required for managed host that is bare metal, not required if it's a virtual machine
+              required: false
+              type: string
+            domain_id:
+              description: required if host is managed and value is not inherited from host group
+              required: false
+              type: number
+            operatingsystem_id:
+              description: required if host is managed and value is not inherited from host group
+              required: false
+              type: number
+            subnet_id:
+              description: required if host is managed and value is not inherited from host group
+              required: false
+              type: number
+            model_id:
+              description: ''
+              required: false
+              type: number
+            hostgroup_id:
+              description: ''
+              required: false
+              type: number
+            host_parameters_attributes:
+              description: Host's parameters (array or indexed hash)
+              required: false
+              type: array
+              parameters:
+                name:
+                  description: Name of the parameter
+                  required: false
+                  type: string
+                value:
+                  description: Parameter value
+                  required: false
+                  type: string
+                parameter_type:
+                  description: Type of value
+                  required: false
+                  type: string
+                hidden_value:
+                  description: ''
+                  required: false
+                  type: boolean
+            build:
+              description: ''
+              required: false
+              type: boolean
+            enabled:
+              description: Include this host within Satellite reporting
+              required: false
+              type: boolean
+            managed:
+              description: 'True/False flag whether a host is managed or unmanaged. Note: this value also determines whether several parameters are required or not'
+              required: false
+              type: boolean
+            comment:
+              description: Additional information about this host
+              required: false
+              type: string
+            interfaces_attributes:
+              description: Host's network interfaces
+              required: false
+              type: array
+              parameters:
+                mac:
+                  description: MAC address of interface. Required for managed interfaces on bare metal.
+                  required: false
+                  type: string
+                ip:
+                  description: IPv4 address of interface
+                  required: false
+                  type: string
+                ip6:
+                  description: IPv6 address of interface
+                  required: false
+                  type: string
+                type:
+                  description: Interface type, e.g. bmc. Default is interface
+                  required: false
+                  type: string
+                name:
+                  description: Interface's DNS name
+                  required: false
+                  type: string
+                subnet_id:
+                  description: Satellite subnet ID of IPv4 interface
+                  required: false
+                  type: number
+                subnet6_id:
+                  description: Satellite subnet ID of IPv6 interface
+                  required: false
+                  type: number
+                domain_id:
+                  description: Satellite domain ID of interface. Required for primary interfaces on managed hosts.
+                  required: false
+                  type: number
+                identifier:
+                  description: Device identifier, e.g. eth0 or eth1.1
+                  required: false
+                  type: string
+                managed:
+                  description: Should this interface be managed via DHCP and DNS capsule and should it be configured during provisioning?
+                  required: false
+                  type: boolean
+                primary:
+                  description: Should this interface be used for constructing the FQDN of the host? Each managed hosts needs to have one primary interface.
+                  required: false
+                  type: boolean
+                provision:
+                  description: Should this interface be used for TFTP of PXELinux (or SSH for image-based hosts)? Each managed hosts needs to have one provision interface.
+                  required: false
+                  type: boolean
+                username:
+                  description: Only for BMC interfaces.
+                  required: false
+                  type: string
+                password:
+                  description: Only for BMC interfaces.
+                  required: false
+                  type: string
+                provider:
+                  description: Interface provider, e.g. IPMI. Only for BMC interfaces.
+                  required: false
+                  type: string
+                virtual:
+                  description: Alias or VLAN device
+                  required: false
+                  type: boolean
+                tag:
+                  description: VLAN tag, this attribute has precedence over the subnet VLAN ID. Only for virtual interfaces.
+                  required: false
+                  type: string
+                mtu:
+                  description: MTU, this attribute has precedence over the subnet MTU.
+                  required: false
+                  type: number
+                attached_to:
+                  description: Identifier of the interface to which this interface belongs, e.g. eth1. Only for virtual interfaces.
+                  required: false
+                  type: string
+                mode:
+                  description: Bond mode of the interface, e.g. balance-rr. Only for bond interfaces.
+                  required: false
+                  type: string
+                attached_devices:
+                  description: Identifiers of attached interfaces, e.g. `['eth1', 'eth2']`. For bond interfaces those are the slaves. Only for bond and bridges interfaces.
+                  required: false
+                  type: array
+                bond_options:
+                  description: Space separated options, e.g. miimon=100. Only for bond interfaces.
+                  required: false
+                  type: string
+                compute_attributes:
+                  description: Additional compute resource specific attributes for the interface.
+                  required: false
+                  type: object
+            content_facet_attributes:
+              description: Parameters for host's content_facet facet
+              required: false
+              type: object
+              parameters:
+                content_view_id:
+                  description: ''
+                  required: false
+                  type: number
+                lifecycle_environment_id:
+                  description: ''
+                  required: false
+                  type: number
+                content_source_id:
+                  description: ''
+                  required: false
+                  type: number
+                kickstart_repository_id:
+                  description: Repository Id associated with the kickstart repo used for provisioning
+                  required: false
+                  type: number
+            subscription_facet_attributes:
+              description: Parameters for host's subscription_facet facet
+              required: false
+              type: object
+              parameters:
+                release_version:
+                  description: Release version for this Host to use (7Server, 7.1, etc)
+                  required: false
+                  type: string
+                autoheal:
+                  description: Sets whether the Host will autoheal subscriptions upon checkin
+                  required: false
+                  type: boolean
+                purpose_usage:
+                  description: Sets the system purpose usage
+                  required: false
+                  type: string
+                purpose_role:
+                  description: Sets the system purpose usage
+                  required: false
+                  type: string
+                purpose_addons:
+                  description: Sets the system add-ons
+                  required: false
+                  type: array
+                service_level:
+                  description: Service level to be used for autoheal
+                  required: false
+                  type: string
+                hypervisor_guest_uuids:
+                  description: List of hypervisor guest uuids
+                  required: false
+                  type: array
+                installed_products_attributes:
+                  description: List of products installed on the host
+                  required: false
+                  type: array
+                  parameters:
+                    product_id:
+                      description: Product id as listed from a host's installed products,         this is not the same product id as the products api returns
+                      required: false
+                      type: string
+                    product_name:
+                      description: Product name as listed from a host's installed products
+                      required: false
+                      type: string
+                    arch:
+                      description: Product architecture
+                      required: false
+                      type: string
+                    version:
+                      description: Product version
+                      required: false
+                      type: string
+            "
+  setup_insights:
+    type: boolean
+    required: false
+    description: "Set 'host_registration_insights' parameter for the host. If it is set to true, insights client will be installed and registered on Red Hat family operating systems"
+  setup_remote_execution:
+    type: boolean
+    required: false
+    description: "Set 'host_registration_remote_execution' parameter for the host. If it is set to true, SSH keys will be installed on the host"
+  remote_execution_interface:
+    type: string
+    required: false
+    description: "Identifier of the Host interface for Remote execution"

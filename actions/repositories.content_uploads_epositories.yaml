@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -32,9 +32,13 @@ parameters:
     required: true
     description: "Repository id"
   id:
-    type: number
+    type: string
     required: true
     description: "Upload request id"
+  size:
+    type: number
+    required: true
+    description: "Size of file to upload"
   offset:
     type: number
     required: true

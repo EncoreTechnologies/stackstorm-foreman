@@ -1,0 +1,55 @@
+---
+description: "Update an email notification for a user (resource: PUT /api/users/:user_id/mail_notifications/:mail_notification_id)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: users.mail_notifications_user_id_mail_updatenotifications
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: users.mail_notifications_user_id_mail_updatenotifications
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  location_id:
+    type: number
+    required: false
+    description: "Set the current location context for the request"
+  organization_id:
+    type: number
+    required: false
+    description: "Set the current organization context for the request"
+  user_id:
+    type: string
+    required: true
+  mail_notification_id:
+    type: number
+    required: true
+  interval:
+    type: string
+    required: false
+    description: "Mail notification interval option, e.g. Daily, Weekly or Monthly. Required for summary notification"
+  subscription:
+    type: string
+    required: false
+    description: "Mail notification subscription option, e.g. Subscribe, Subscribe to my hosts or Subscribe to all hosts. Required for host built and config error state"
+  mail_query:
+    type: string
+    required: false
+    description: "Relevant only for audit summary notification"

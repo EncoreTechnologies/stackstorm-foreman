@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -34,13 +34,13 @@ parameters:
        "description: 
         parameters:
             content_view_version_id:
+              description: Content View Version Ids to perform an incremental update on.  May contain composites as well as one or more components to update.
               required: false
               type: number
-              description: Content View Version Ids to perform an incremental update on.  May containcomposites as well as one or more components to update.
             environment_ids:
+              description: The list of environments to promote the specified Content View Version to (replacing the older version)
               required: false
               type: array
-              description: The list of environments to promote the specified Content View Version to(replacing the older version)
             "
   description:
     type: string
@@ -49,60 +49,56 @@ parameters:
   resolve_dependencies:
     type: boolean
     required: false
-    description: "If true, when adding the specified errata or packages, any neededdependencies will be copied as well"
+    description: "If true, when adding the specified errata or packages, any needed dependencies will be copied as well. Defaults to true"
   propagate_all_composites:
     type: boolean
     required: false
-    description: "If true, will publish a new composite version using any specifiedcontent_view_version_id that has been promoted to a lifecycle environment"
+    description: "If true, will publish a new composite version using any specified content_view_version_id that has been promoted to a lifecycle environment"
   add_content:
     type: object
     required: false
     description: >
        "description: 
         parameters:
-            package_ids:
-              required: false
-              type: array
-              description: Package ids or uuids to copy into the new versions
-            deb_ids:
-              required: false
-              type: array
-              description: Deb Package ids or uuids to copy into the new versions
             errata_ids:
+              description: Errata ids to copy into the new versions
               required: false
               type: array
-              description: Errata ids or uuids to copy into the new versions
-            puppet_module_ids:
+            package_ids:
+              description: Package ids to copy into the new versions
               required: false
               type: array
-              description: Puppet Module ids or uuids to copy into the new versions
+            deb_ids:
+              description: Deb Package ids to copy into the new versions
+              required: false
+              type: array
             "
   update_hosts:
     type: object
     required: false
     description: >
-       "description: After generating the incremental update, apply the changes to the specifiedhosts.  Only Errata are supported currently.
+       "description: After generating the incremental update, apply the changes to the specified hosts.  Only Errata are supported currently.
         parameters:
             included:
+              description: ''
               required: true
               type: object
-              description: ''
               parameters:
                 search:
+                  description: Search string for host to perform an action on
                   required: false
                   type: string
-                  description: Search string for host to perform an action on
                 ids:
+                  description: List of host ids to perform an action on
                   required: false
                   type: array
-                  description: List of host ids to perform an action on
             excluded:
+              description: ''
               required: false
               type: object
-              description: ''
               parameters:
                 ids:
+                  description: List of host ids to exclude and not run an action on
                   required: false
                   type: array
-                  description: List of host ids to exclude and not run an action on
             "

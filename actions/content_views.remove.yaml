@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -32,11 +32,11 @@ parameters:
     required: true
     description: "content view numeric identifier"
   environment_ids:
-    type: number
+    type: array
     required: false
     description: "environment numeric identifiers to be removed"
   content_view_version_ids:
-    type: number
+    type: array
     required: false
     description: "content view version identifiers to be deleted"
   system_content_view_id:
@@ -55,3 +55,7 @@ parameters:
     type: number
     required: false
     description: "environment to reassign orphaned activation keys to"
+  destroy_content_view:
+    type: boolean
+    required: false
+    description: "delete the content view with all the versions and environments"

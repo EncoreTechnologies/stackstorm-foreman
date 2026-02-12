@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -63,14 +63,18 @@ parameters:
     type: string
     required: false
     description: "Id of a file to find repositories that contain the file"
-  ostree_branch_id:
+  ansible_collection_id:
     type: string
     required: false
-    description: "Id of an ostree branch to find repositories that contain that branch"
+    description: "Id of an ansible collection to find repositories that contain the ansible collection"
   library:
     type: boolean
     required: false
     description: "show repositories in Library and the default content view"
+  archived:
+    type: boolean
+    required: false
+    description: "show archived repositories"
   content_type:
     type: string
     required: false
@@ -90,7 +94,19 @@ parameters:
   available_for:
     type: string
     required: false
-    description: "interpret specified object to return only Repositories that can beassociated with specified object.  Only 'content_view' &'content_view_version' are supported."
+    description: "interpret specified object to return only Repositories that can be associated with specified object.  Only 'content_view' & 'content_view_version' are supported."
+  with_content:
+    type: string
+    required: false
+    description: "only repositories having at least one of the specified content type ex: rpm , erratum"
+  download_policy:
+    type: string
+    required: false
+    description: "limit to only repositories with this download policy"
+  username:
+    type: string
+    required: false
+    description: "only show the repositories readable by this user with this username"
   search:
     type: string
     required: false

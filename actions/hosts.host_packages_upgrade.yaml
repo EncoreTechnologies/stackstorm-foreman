@@ -1,5 +1,5 @@
 ---
-description: "Update packages remotely (resource: PUT /api/hosts/:host_id/packages/upgrade)"
+description: "Update packages remotely using katello-agent. NOTE: Katello-agent is deprecated and will be removed in a future release. Consider using remote execution instead. (resource: PUT /api/hosts/:host_id/packages/upgrade)"
 enabled: true
 runner_type: "python-script"
 entry_point: lib/action.py
@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false

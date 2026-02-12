@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -58,7 +58,7 @@ parameters:
   packages_restrict_applicable:
     type: boolean
     required: false
-    description: "Return packages that are applicable to one or more hosts (defaults to trueif host_id is specified)"
+    description: "Return packages that are applicable to one or more hosts (defaults to true if host_id is specified)"
   packages_restrict_upgradable:
     type: boolean
     required: false
@@ -70,7 +70,7 @@ parameters:
   available_for:
     type: string
     required: false
-    description: "Return packages that can be added to the specified object.  Only the value'content_view_version' is supported."
+    description: "Return packages that can be added to the specified object.  Only the value 'content_view_version' is supported."
   search:
     type: string
     required: false

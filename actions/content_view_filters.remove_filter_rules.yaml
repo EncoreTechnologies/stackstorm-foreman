@@ -1,0 +1,41 @@
+---
+description: "bulk delete filter rules (resource: put /katello/api/content_view_filters/:id/remove_filter_rules)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: content_view_filters.remove_filter_rules
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: content_view_filters.remove_filter_rules
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  content_view_id:
+    type: number
+    required: false
+    description: "content view identifier"
+  id:
+    type: number
+    required: true
+    description: "filter identifier"
+  rule_ids:
+    type: array
+    required: true
+    description: "filter identifiers"

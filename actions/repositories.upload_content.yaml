@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -35,3 +35,7 @@ parameters:
     type: string
     required: true
     description: "Content files to upload. Can be a single file or array of files."
+  content_type:
+    type: string
+    required: false
+    description: "content type ('deb', 'docker_manifest', 'file', 'ostree', 'rpm', 'srpm')"

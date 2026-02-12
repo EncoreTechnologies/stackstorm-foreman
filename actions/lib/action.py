@@ -15,9 +15,9 @@ except ImportError:
 
 
 #                         (key, required, default)
-CONFIG_CONNECTION_KEYS = [('server', True, ""),
-                          ('username', True, ""),
-                          ('password', True, "")]
+CONFIG_CONNECTION_KEYS = [('conn_server', True, ""),
+                          ('conn_username', True, ""),
+                          ('conn_password', True, "")]
 
 
 class BaseAction(Action):
@@ -117,9 +117,9 @@ class BaseAction(Action):
         self._validate_connection(connection)
 
         # connect to the server
-        client = foreman.client.Foreman('https://{}/'.format(connection['server']),
-                                        auth=(connection['username'], connection['password']),
-                                        api_version=2, timeout=timeout)
+        client = foreman.client.Foreman('https://{}/'.format(connection['conn_server']),
+                                        auth=(connection['conn_username'],
+                                        connection['conn_password']), api_version=2)
 
         # Performs a "deep" getattr() lookup so we can pass a string like
         # 'method1.method2.method3' without having to chain getattr()

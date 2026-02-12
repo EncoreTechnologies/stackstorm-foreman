@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -30,14 +30,17 @@ parameters:
   location_id:
     type: number
     required: false
-    description: "Scope by locations"
+    description: "Set the current location context for the request"
   organization_id:
     type: number
     required: false
-    description: "Scope by organizations"
+    description: "Set the current organization context for the request"
   id:
     type: string
     required: true
+  cluster_id:
+    type: string
+    required: false
   storage_pod:
     type: string
     required: true

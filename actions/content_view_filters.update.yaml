@@ -14,15 +14,15 @@ parameters:
     type: string
     description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
     required: false
-  server:
+  conn_server:
     type: string
     description: "Optional override of the server in <connection> (required if <connection> is not specified)."
     required: false
-  username:
+  conn_username:
     type: string
     description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
     required: false
-  password:
+  conn_password:
     type: string
     description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
     required: false
@@ -42,12 +42,20 @@ parameters:
   original_packages:
     type: boolean
     required: false
-    description: "add all packages without errata to the included/excluded list. (packagefilter only)"
+    description: "add all packages without errata to the included/excluded list. (package filter only)"
+  original_module_streams:
+    type: boolean
+    required: false
+    description: "add all module streams without errata to the included/excluded list. (module stream filter only)"
   inclusion:
     type: boolean
     required: false
-    description: "specifies if content should be included or excluded, default:inclusion=false"
+    description: "specifies if content should be included or excluded, default: inclusion=false"
   repository_ids:
     type: array
     required: false
     description: "list of repository ids"
+  description:
+    type: string
+    required: false
+    description: "description of the filter"

@@ -1,0 +1,96 @@
+---
+description: "bulk add filter rules (resource: put /katello/api/content_view_filters/:id/add_filter_rules)"
+enabled: true
+runner_type: "python-script"
+entry_point: lib/action.py
+name: content_view_filters.add_filter_rules
+pack: foreman
+parameters:
+  operation:
+    type: string
+    default: content_view_filters.add_filter_rules
+    immutable: true
+  connection:
+    type: string
+    description: "Name of <connection> from this pack's configuration that specifies how to connect to a server."
+    required: false
+  conn_server:
+    type: string
+    description: "Optional override of the server in <connection> (required if <connection> is not specified)."
+    required: false
+  conn_username:
+    type: string
+    description: "Optional override of the username in <connection> (example: username@domain.tld) (required if <connection> is not specified)."
+    required: false
+  conn_password:
+    type: string
+    description: "Optional override of the password in <connection>. (required if <connection> is not specified)"
+    required: false
+    secret: true
+  content_view_id:
+    type: number
+    required: false
+    description: "content view identifier"
+  id:
+    type: number
+    required: true
+    description: "filter identifier"
+  rules_params:
+    type: array
+    required: false
+    description: >
+       "description: Rules to be added
+        parameters:
+            name:
+              description: package, package group, or docker tag names
+              required: false
+              type: array
+            uuid:
+              description: 'package group: uuid'
+              required: false
+              type: string
+            version:
+              description: 'package: version'
+              required: false
+              type: string
+            architecture:
+              description: 'package: architecture'
+              required: false
+              type: string
+            min_version:
+              description: 'package: minimum version'
+              required: false
+              type: string
+            max_version:
+              description: 'package: maximum version'
+              required: false
+              type: string
+            errata_id:
+              description: 'erratum: id'
+              required: false
+              type: string
+            errata_ids:
+              description: 'erratum: IDs or a select all object'
+              required: false
+              type: array
+            start_date:
+              description: 'erratum: start date (YYYY-MM-DD)'
+              required: false
+              type: string
+            end_date:
+              description: 'erratum: end date (YYYY-MM-DD)'
+              required: false
+              type: string
+            types:
+              description: 'erratum: types (enhancement, bugfix, security)'
+              required: false
+              type: array
+            date_type:
+              description: "erratum: search using the 'Issued On' or 'Updated On' column of the errata. Values are 'issued'/'updated'"
+              required: false
+              type: string
+            module_stream_ids:
+              description: module stream ids
+              required: false
+              type: array
+            "
